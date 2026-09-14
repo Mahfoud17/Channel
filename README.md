@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Channel Manager
 
-## Getting Started
+PMS / Channel Manager pour la location courte durée — multi-logements,
+calendrier centralisé, ménage, pricing. Voir le dossier d'architecture pour
+le contexte complet (modules, roadmap, décisions actées : MVP en iCal-only,
+socle managé Supabase).
 
-First, run the development server:
+État actuel : **Sprint 1 — fondations** (auth + organisations + RBAC).
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack) + TypeScript + Tailwind CSS
+- [Supabase](https://supabase.com) — Postgres, Auth, Storage, Realtime
+- pnpm
+
+## Mise en route
+
+### 1. Créer le projet Supabase
+
+Dans le [dashboard Supabase](https://supabase.com/dashboard), crée un nouveau
+projet (région proche de tes voyageurs/logements, ex. `eu-west-3`).
+
+### 2. Appliquer le schéma
+
+Les migrations vivent dans [`supabase/migrations/`](supabase/migrations), à
+appliquer **dans l'ordre numérique**. Le plus simple sans installer le CLI
+Supabase&nbsp;: ouvre l'éditeur SQL du dashboard (*SQL Editor*) et colle le
+contenu de chaque fichier, un par un :
+
+1. `0001_extensions.sql`
+2. `0002_organizations_and_roles.sql`
+3. `0003_audit_and_settings.sql`
+
+(Si tu préfères le CLI : `npx supabase login`, `npx supabase link --project-ref <ref>`,
+puis `npx supabase db push`.)
+
+### 3. Variables d'environnement
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Remplis les trois valeurs depuis *Project Settings → API* du dashboard
+Supabase : `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY` (cette dernière ne doit **jamais** être exposée
+au navigateur ni commit).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Lancer l'app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm install
+pnpm dev
+```
 
-## Learn More
+Ouvre [http://localhost:3000](http://localhost:3000) — tu es redirigé vers
+`/login`. Crée un compte (email + mot de passe), confirme l'email si la
+confirmation est activée sur le projet Supabase, puis crée ta première
+organisation : tu en deviens automatiquement administrateur.
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/
+    login/                 page de connexion / inscription
+    auth/callback/         échange du code magic-link -> session
+    actions/                Server Actions (organisations, déconnexion)
+    page.tsx                tableau de bord (liste des organisations)
+  lib/supabase/
+    client.ts               client Supabase pour les Client Components
+    server.ts                client Supabase pour Server Components / Route Handlers
+    proxy.ts                 rafraîchissement de session, utilisé par src/proxy.ts
+  proxy.ts                   proxy Next.js (ex-"middleware") : session + routes protégées
+supabase/
+  migrations/                schéma SQL, un fichier par migration, RLS incluse
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Sécurité des données
 
-## Deploy on Vercel
+L'isolation multi-organisation est appliquée au niveau base via **Row Level
+Security** (pas seulement en filtrant côté application) : chaque table
+métier a des policies qui vérifient l'appartenance à l'organisation via
+`is_org_member()` / `has_org_role()` (voir `0002_organizations_and_roles.sql`).
+La clé `service_role` contourne ces policies — elle est réservée au code
+serveur de confiance (jobs planifiés), jamais à un chemin déclenchable
+directement par un client.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev      # serveur de développement (Turbopack)
+pnpm build    # build de production
+pnpm lint     # ESLint
+```
+
+## Prochaines étapes
+
+Voir la roadmap du dossier d'architecture — Sprint 2 : logements (properties/units).
