@@ -42,3 +42,40 @@ export async function createProperty(
   revalidatePath(`/org/${orgSlug}/properties`);
   return { error: null };
 }
+
+export async function updateProperty(
+  propertyId: string,
+  orgSlug: string,
+  _prevState: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const name = str(formData, "name");
+  const addressLine1 = str(formData, "address_line1");
+  const city = str(formData, "city");
+  const postalCode = str(formData, "postal_code");
+
+  if (!name || !addressLine1 || !city || !postalCode) {
+    return { error: "Nom, adresse, ville et code postal sont obligatoires." };
+  }
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("properties")
+    .update({
+      name,
+      address_line1: addressLine1,
+      address_line2: str(formData, "address_line2") || null,
+      city,
+      postal_code: postalCode,
+      country: str(formData, "country") || "FR",
+    })
+    .eq("id", propertyId);
+
+  if (error) {
+    return { error: "Impossible d'enregistrer les modifications." };
+  }
+
+  revalidatePath(`/org/${orgSlug}/properties`);
+  revalidatePath(`/org/${orgSlug}/properties/${propertyId}`);
+  return { error: null };
+}
