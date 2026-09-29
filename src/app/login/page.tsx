@@ -56,89 +56,104 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-full flex-1 items-center justify-center bg-neutral-50 px-4 py-16">
-      <div className="w-full max-w-sm">
-        <div className="mb-8 text-center">
-          <p className="text-xs font-medium uppercase tracking-wide text-emerald-700">
+    <main className="grid min-h-full flex-1 grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+      {/* Brand panel — the one moment of boldness on this page. */}
+      <div className="flex flex-col justify-between bg-accent px-6 py-10 text-accent-ink sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+        <span className="flex h-9 w-9 items-center justify-center rounded-md bg-accent-ink font-display text-lg font-semibold text-accent">
+          C
+        </span>
+        <div className="max-w-sm">
+          <p className="font-display text-3xl italic leading-tight sm:text-4xl">
             Channel Manager
           </p>
-          <h1 className="mt-2 text-2xl font-semibold text-neutral-900">
+          <p className="mt-4 text-sm leading-relaxed text-accent-ink/80">
+            Calendrier centralisé, synchronisation multi-plateformes, ménage et tarification —
+            le poste de pilotage de tes locations courte durée.
+          </p>
+        </div>
+        <p className="hidden text-xs text-accent-ink/60 lg:block">
+          Aucune double réservation ne passe entre les mailles du filet.
+        </p>
+      </div>
+
+      {/* Form panel */}
+      <div className="flex items-center justify-center bg-paper px-4 py-12 sm:px-10">
+        <div className="w-full max-w-sm">
+          <h1 className="text-2xl font-semibold text-ink">
             {mode === "sign-in" ? "Connexion" : "Créer un compte"}
           </h1>
-        </div>
+          <p className="mt-1 text-sm text-ink-soft">
+            {mode === "sign-in"
+              ? "Accède à tes logements et réservations."
+              : "Commence par créer ton compte, tu configureras ton organisation ensuite."}
+          </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm"
-        >
-          <div className="space-y-1.5">
-            <label htmlFor="email" className="block text-sm font-medium text-neutral-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="card mt-6 space-y-4">
+            <div>
+              <label htmlFor="email" className="label">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                className="field"
+              />
+            </div>
 
-          <div className="space-y-1.5">
-            <label htmlFor="password" className="block text-sm font-medium text-neutral-700">
-              Mot de passe
-            </label>
-            <input
-              id="password"
-              type="password"
-              autoComplete={mode === "sign-in" ? "current-password" : "new-password"}
-              required
-              minLength={8}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
-            />
-          </div>
+            <div>
+              <label htmlFor="password" className="label">
+                Mot de passe
+              </label>
+              <input
+                id="password"
+                type="password"
+                autoComplete={mode === "sign-in" ? "current-password" : "new-password"}
+                required
+                minLength={8}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                className="field"
+              />
+            </div>
 
-          {error && (
-            <p role="alert" className="text-sm text-red-600">
-              {error}
-            </p>
-          )}
-          {notice && (
-            <p role="status" className="text-sm text-emerald-700">
-              {notice}
-            </p>
-          )}
+            {error && (
+              <p role="alert" className="text-sm text-critical">
+                {error}
+              </p>
+            )}
+            {notice && (
+              <p role="status" className="text-sm text-good">
+                {notice}
+              </p>
+            )}
+
+            <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full">
+              {isSubmitting
+                ? "Un instant…"
+                : mode === "sign-in"
+                  ? "Se connecter"
+                  : "Créer le compte"}
+            </button>
+          </form>
 
           <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full rounded-md bg-emerald-700 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60"
+            type="button"
+            onClick={() => {
+              setMode(mode === "sign-in" ? "sign-up" : "sign-in");
+              setError(null);
+              setNotice(null);
+            }}
+            className="mt-4 w-full text-center text-sm text-ink-soft hover:text-ink"
           >
-            {isSubmitting
-              ? "Un instant…"
-              : mode === "sign-in"
-                ? "Se connecter"
-                : "Créer le compte"}
+            {mode === "sign-in"
+              ? "Pas encore de compte ? Créer un compte"
+              : "Déjà un compte ? Se connecter"}
           </button>
-        </form>
-
-        <button
-          type="button"
-          onClick={() => {
-            setMode(mode === "sign-in" ? "sign-up" : "sign-in");
-            setError(null);
-            setNotice(null);
-          }}
-          className="mt-4 w-full text-center text-sm text-neutral-600 hover:text-neutral-900"
-        >
-          {mode === "sign-in"
-            ? "Pas encore de compte ? Créer un compte"
-            : "Déjà un compte ? Se connecter"}
-        </button>
+        </div>
       </div>
     </main>
   );

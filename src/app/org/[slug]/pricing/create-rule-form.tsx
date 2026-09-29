@@ -38,7 +38,7 @@ export function CreateRuleForm({
           <select
             id="unit_id"
             name="unit_id"
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           >
             <option value="">Toute l&apos;organisation</option>
             {units.map((unit) => (
@@ -57,7 +57,7 @@ export function CreateRuleForm({
             name="rule_type"
             value={ruleType}
             onChange={(e) => setRuleType(e.target.value)}
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           >
             {RULE_TYPES.map((t) => (
               <option key={t.value} value={t.value}>
@@ -97,7 +97,7 @@ export function CreateRuleForm({
             id="adjustment_type"
             name="adjustment_type"
             defaultValue="percent"
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           >
             <option value="percent">Pourcentage</option>
             <option value="fixed">Montant fixe (€)</option>
@@ -115,7 +115,7 @@ export function CreateRuleForm({
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {state.error}
         </p>
       )}
@@ -123,7 +123,7 @@ export function CreateRuleForm({
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+        className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
       >
         {isPending ? "Création…" : "Créer la règle"}
       </button>
@@ -167,7 +167,7 @@ function Field({
         max={max}
         step={step}
         placeholder={placeholder}
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
     </div>
   );

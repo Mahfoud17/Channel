@@ -42,7 +42,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
             type="text"
             required
             placeholder="ex. Instructions d'arrivée"
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           />
         </div>
         <div className="space-y-1.5">
@@ -55,7 +55,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
             type="number"
             min={0}
             defaultValue={0}
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           />
         </div>
       </div>
@@ -67,7 +67,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
         <select
           id="trigger_type"
           name="trigger_type"
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         >
           {TRIGGERS.map((t) => (
             <option key={t.value} value={t.value}>
@@ -86,7 +86,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
           name="subject"
           type="text"
           placeholder="ex. Votre arrivée chez {{nom_logement}}"
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
       </div>
 
@@ -100,7 +100,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
           required
           rows={6}
           placeholder={`Bonjour {{prenom}},\n\nVotre logement ${"{{nom_logement}}"} vous attend le {{date_arrivee}}.\nCode d'accès : {{code_acces}}\nWi-Fi : {{wifi}}\nAdresse : {{adresse}}`}
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
         <p className="text-xs text-neutral-500">
           Variables disponibles :{" "}
@@ -113,7 +113,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {state.error}
         </p>
       )}
@@ -121,7 +121,7 @@ export function CreateTemplateForm({ orgId, orgSlug }: { orgId: string; orgSlug:
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+        className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
       >
         {isPending ? "Création…" : "Créer le modèle"}
       </button>

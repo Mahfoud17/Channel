@@ -130,7 +130,7 @@ export function PhotoManager({
           className="hidden"
         />
         {error && (
-          <p role="alert" className="mt-2 text-sm text-red-600">
+          <p role="alert" className="mt-2 text-sm text-critical">
             {error}
           </p>
         )}

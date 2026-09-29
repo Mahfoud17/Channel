@@ -24,7 +24,7 @@ export default async function HomePage() {
     <main className="flex min-h-full flex-1 flex-col bg-neutral-50">
       <header className="flex items-center justify-between border-b border-neutral-200 bg-white px-6 py-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-emerald-700">
+          <p className="text-xs font-medium uppercase tracking-wide text-accent">
             Channel Manager
           </p>
           <p className="text-sm text-neutral-600">{user.email}</p>
@@ -66,7 +66,7 @@ export default async function HomePage() {
                   <li key={org.id}>
                     <Link
                       href={`/org/${org.slug}`}
-                      className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-emerald-600"
+                      className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-accent"
                     >
                       <div>
                         <p className="font-medium text-neutral-900">{org.name}</p>

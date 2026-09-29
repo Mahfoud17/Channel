@@ -32,7 +32,7 @@ export function StatusSelector({
           updateUnitStatus(unitId, propertyId, orgSlug, status);
         });
       }}
-      className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 disabled:opacity-60"
+      className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-60"
     >
       {STATUSES.map((status) => (
         <option key={status.value} value={status.value}>

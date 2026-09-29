@@ -34,7 +34,7 @@ export default async function PropertiesPage({
               <li key={property.id}>
                 <Link
                   href={`/org/${org.slug}/properties/${property.id}`}
-                  className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-emerald-600"
+                  className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-accent"
                 >
                   <div>
                     <p className="font-medium text-neutral-900">{property.name}</p>

@@ -58,42 +58,44 @@ export default async function DashboardPage({ params }: { params: Promise<{ slug
     { label: "Arrivées aujourd'hui", value: arrivals?.length ?? 0, tone: "default" as const },
     { label: "Départs aujourd'hui", value: departures?.length ?? 0, tone: "default" as const },
     { label: "Ménages aujourd'hui", value: cleaningsToday?.length ?? 0, tone: "default" as const },
-    { label: "Problèmes signalés", value: problemsCount ?? 0, tone: (problemsCount ?? 0) > 0 ? "critical" as const : "default" as const },
-    { label: "Ménages non attribués", value: unassignedCount ?? 0, tone: (unassignedCount ?? 0) > 0 ? "warning" as const : "default" as const },
+    {
+      label: "Problèmes signalés",
+      value: problemsCount ?? 0,
+      tone: (problemsCount ?? 0) > 0 ? ("critical" as const) : ("default" as const),
+    },
+    {
+      label: "Ménages non attribués",
+      value: unassignedCount ?? 0,
+      tone: (unassignedCount ?? 0) > 0 ? ("warning" as const) : ("default" as const),
+    },
   ];
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-xl font-semibold capitalize text-neutral-900">
-          {DATE_FORMAT.format(new Date(`${todayDate}T00:00:00Z`))}
-        </h1>
-      </div>
+      <h1 className="text-2xl capitalize text-ink">
+        {DATE_FORMAT.format(new Date(`${todayDate}T00:00:00Z`))}
+      </h1>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
         {tiles.map((tile) => (
           <div
             key={tile.label}
-            className={`rounded-xl border p-4 shadow-sm ${
+            className={`rounded-xl border p-4 ${
               tile.tone === "critical"
-                ? "border-red-200 bg-red-50"
+                ? "border-critical/30 bg-critical-soft"
                 : tile.tone === "warning"
-                  ? "border-amber-200 bg-amber-50"
-                  : "border-neutral-200 bg-white"
+                  ? "border-warn/30 bg-warn-soft"
+                  : "border-line bg-surface"
             }`}
           >
             <p
-              className={`text-2xl font-semibold tabular-nums ${
-                tile.tone === "critical"
-                  ? "text-red-700"
-                  : tile.tone === "warning"
-                    ? "text-amber-700"
-                    : "text-neutral-900"
+              className={`font-display text-4xl font-semibold tabular-nums ${
+                tile.tone === "critical" ? "text-critical" : tile.tone === "warning" ? "text-warn" : "text-ink"
               }`}
             >
               {tile.value}
             </p>
-            <p className="mt-1 text-xs text-neutral-500">{tile.label}</p>
+            <p className="mt-1 text-xs text-ink-soft">{tile.label}</p>
           </div>
         ))}
       </div>
@@ -103,84 +105,86 @@ export default async function DashboardPage({ params }: { params: Promise<{ slug
           {(problemsCount ?? 0) > 0 && (
             <Link
               href={`/org/${org.slug}/cleaning`}
-              className="block rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 hover:border-red-300"
+              className="block rounded-lg border border-critical/30 bg-critical-soft px-4 py-3 text-sm text-critical hover:border-critical/40"
             >
-              ⚠ {problemsCount} ménage(s) avec un problème signalé — à traiter.
+              {problemsCount} ménage{(problemsCount ?? 0) > 1 ? "s" : ""} avec un problème signalé — à
+              traiter.
             </Link>
           )}
           {(unassignedCount ?? 0) > 0 && (
             <Link
               href={`/org/${org.slug}/cleaning`}
-              className="block rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 hover:border-amber-300"
+              className="block rounded-lg border border-warn/30 bg-warn-soft px-4 py-3 text-sm text-warn hover:border-warn/40"
             >
-              ⚠ {unassignedCount} ménage(s) pas encore attribué(s).
+              {unassignedCount} ménage{(unassignedCount ?? 0) > 1 ? "s" : ""} pas encore attribué
+              {(unassignedCount ?? 0) > 1 ? "s" : ""}.
             </Link>
           )}
         </div>
       )}
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="text-base font-semibold text-neutral-900">Arrivées du jour</h2>
+        <section className="card">
+          <h2 className="text-base font-semibold text-ink">Arrivées du jour</h2>
           {arrivals && arrivals.length > 0 ? (
-            <ul className="mt-3 space-y-2 text-sm">
+            <ul className="mt-3 divide-y divide-line-soft text-sm">
               {arrivals.map((r) => (
-                <li key={r.id} className="flex justify-between">
-                  <span className="text-neutral-900">
+                <li key={r.id} className="flex justify-between py-2 first:pt-0 last:pb-0">
+                  <span className="text-ink">
                     {r.guest_first_name} {r.guest_last_name}
                   </span>
-                  <span className="text-neutral-500">{unitName(r)}</span>
+                  <span className="text-ink-soft">{unitName(r)}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-sm text-neutral-500">Aucune arrivée aujourd&apos;hui.</p>
+            <p className="mt-2 text-sm text-ink-soft">Aucune arrivée aujourd&apos;hui.</p>
           )}
         </section>
 
-        <section className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <h2 className="text-base font-semibold text-neutral-900">Départs du jour</h2>
+        <section className="card">
+          <h2 className="text-base font-semibold text-ink">Départs du jour</h2>
           {departures && departures.length > 0 ? (
-            <ul className="mt-3 space-y-2 text-sm">
+            <ul className="mt-3 divide-y divide-line-soft text-sm">
               {departures.map((r) => (
-                <li key={r.id} className="flex justify-between">
-                  <span className="text-neutral-900">
+                <li key={r.id} className="flex justify-between py-2 first:pt-0 last:pb-0">
+                  <span className="text-ink">
                     {r.guest_first_name} {r.guest_last_name}
                   </span>
-                  <span className="text-neutral-500">{unitName(r)}</span>
+                  <span className="text-ink-soft">{unitName(r)}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-2 text-sm text-neutral-500">Aucun départ aujourd&apos;hui.</p>
+            <p className="mt-2 text-sm text-ink-soft">Aucun départ aujourd&apos;hui.</p>
           )}
         </section>
       </div>
 
-      <section className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
+      <section className="card">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-semibold text-neutral-900">Dernières notifications</h2>
-          <Link href={`/org/${org.slug}/notifications`} className="text-sm text-emerald-700 hover:underline">
+          <h2 className="text-base font-semibold text-ink">Dernières notifications</h2>
+          <Link href={`/org/${org.slug}/notifications`} className="text-sm text-accent hover:underline">
             Tout voir
           </Link>
         </div>
         {recentNotifications && recentNotifications.length > 0 ? (
-          <ul className="mt-3 space-y-2 text-sm">
+          <ul className="mt-3 divide-y divide-line-soft text-sm">
             {recentNotifications.map((n) => (
-              <li key={n.id}>
+              <li key={n.id} className="py-2 first:pt-0 last:pb-0">
                 {n.link ? (
-                  <Link href={`/org/${org.slug}${n.link}`} className="text-neutral-900 hover:text-emerald-700">
+                  <Link href={`/org/${org.slug}${n.link}`} className="text-ink hover:text-accent">
                     {n.title}
                   </Link>
                 ) : (
-                  <span className="text-neutral-900">{n.title}</span>
+                  <span className="text-ink">{n.title}</span>
                 )}
-                {n.body && <span className="text-neutral-500"> — {n.body}</span>}
+                {n.body && <span className="text-ink-soft"> — {n.body}</span>}
               </li>
             ))}
           </ul>
         ) : (
-          <p className="mt-2 text-sm text-neutral-500">Aucune notification non lue.</p>
+          <p className="mt-2 text-sm text-ink-soft">Aucune notification non lue.</p>
         )}
       </section>
     </div>

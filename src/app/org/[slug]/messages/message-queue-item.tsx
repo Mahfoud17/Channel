@@ -30,7 +30,7 @@ export function MessageQueueItem({
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="text-left font-medium text-neutral-900 hover:text-emerald-700"
+          className="text-left font-medium text-neutral-900 hover:text-accent"
         >
           {recipientName || "Voyageur"}
           {recipientEmail && <span className="ml-1 font-normal text-neutral-500">({recipientEmail})</span>}
@@ -56,7 +56,7 @@ export function MessageQueueItem({
             type="button"
             disabled={isPending}
             onClick={() => startTransition(async () => { await markMessageSent(messageId, orgSlug); })}
-            className="rounded-md bg-emerald-700 px-2 py-1 text-xs font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+            className="rounded-md bg-accent px-2 py-1 text-xs font-medium text-white hover:bg-accent-hover disabled:opacity-60"
           >
             Marquer envoyé
           </button>
@@ -64,7 +64,7 @@ export function MessageQueueItem({
             type="button"
             disabled={isPending}
             onClick={() => startTransition(async () => { await cancelScheduledMessage(messageId, orgSlug); })}
-            className="text-xs text-red-600 hover:text-red-800 disabled:opacity-60"
+            className="text-xs text-critical hover:text-critical disabled:opacity-60"
           >
             Annuler
           </button>

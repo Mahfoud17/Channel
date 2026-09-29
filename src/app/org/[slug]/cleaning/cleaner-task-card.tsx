@@ -62,7 +62,7 @@ export function CleanerTaskCard({ task, orgId, orgSlug }: { task: CleanerTask; o
               <button
                 disabled={isPending}
                 onClick={() => run(() => acceptCleaningTask(task.id, orgSlug))}
-                className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+                className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
               >
                 Accepter
               </button>
@@ -79,7 +79,7 @@ export function CleanerTaskCard({ task, orgId, orgSlug }: { task: CleanerTask; o
             <button
               disabled={isPending}
               onClick={() => run(() => startCleaningTask(task.id, orgSlug))}
-              className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+              className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
             >
               Commencer le ménage
             </button>
@@ -87,7 +87,7 @@ export function CleanerTaskCard({ task, orgId, orgSlug }: { task: CleanerTask; o
           {task.status === "in_progress" && (
             <button
               onClick={() => setMode("completing")}
-              className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800"
+              className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover"
             >
               Terminer le ménage
             </button>
@@ -95,7 +95,7 @@ export function CleanerTaskCard({ task, orgId, orgSlug }: { task: CleanerTask; o
           {task.status !== "cancelled" && (
             <button
               onClick={() => setMode("reporting")}
-              className="rounded-md border border-red-300 px-4 py-2 text-sm text-red-700 hover:bg-red-50"
+              className="rounded-md border border-critical/40 px-4 py-2 text-sm text-critical hover:bg-critical-soft"
             >
               Signaler un problème
             </button>
@@ -122,7 +122,7 @@ export function CleanerTaskCard({ task, orgId, orgSlug }: { task: CleanerTask; o
       )}
 
       {error && (
-        <p role="alert" className="mt-2 text-sm text-red-600">
+        <p role="alert" className="mt-2 text-sm text-critical">
           {error}
         </p>
       )}
@@ -155,13 +155,13 @@ function CompleteForm({
               type="checkbox"
               checked={checked[item] ?? false}
               onChange={(e) => setChecked((c) => ({ ...c, [item]: e.target.checked }))}
-              className="rounded border-neutral-300 text-emerald-700 focus:ring-emerald-600"
+              className="rounded border-neutral-300 text-accent focus:ring-accent"
             />
             {item}
           </label>
         ))}
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-critical">{error}</p>}
       <div className="flex gap-2">
         <button
           disabled={isPending}
@@ -173,7 +173,7 @@ function CompleteForm({
               else onCancel();
             });
           }}
-          className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
         >
           {isPending ? "Envoi…" : "Confirmer, ménage terminé"}
         </button>
@@ -228,13 +228,13 @@ function ReportIssueForm({
   }
 
   return (
-    <div className="mt-4 space-y-3 rounded-md border border-red-200 bg-red-50 p-3">
+    <div className="mt-4 space-y-3 rounded-md border border-critical/30 bg-critical-soft p-3">
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Décris le problème (ex. robinet qui fuit, serviette manquante...)"
         rows={3}
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
       <div>
         <button
@@ -247,7 +247,7 @@ function ReportIssueForm({
         </button>
         <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFile} className="hidden" />
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-critical">{error}</p>}
       <div className="flex gap-2">
         <button
           disabled={isPending || isUploading}
@@ -259,7 +259,7 @@ function ReportIssueForm({
               else onCancel();
             });
           }}
-          className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
+          className="rounded-md bg-critical px-4 py-2 text-sm font-medium text-white hover:bg-critical/90 disabled:opacity-60"
         >
           {isPending ? "Envoi…" : "Envoyer le signalement"}
         </button>

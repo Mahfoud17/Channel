@@ -27,7 +27,7 @@ export function RuleActions({
               await togglePricingRule(ruleId, orgSlug, checked);
             });
           }}
-          className="rounded border-neutral-300 text-emerald-700 focus:ring-emerald-600"
+          className="rounded border-neutral-300 text-accent focus:ring-accent"
         />
         Active
       </label>
@@ -39,7 +39,7 @@ export function RuleActions({
             await deletePricingRule(ruleId, orgSlug);
           })
         }
-        className="text-xs text-red-600 hover:text-red-800 disabled:opacity-60"
+        className="text-xs text-critical hover:text-critical disabled:opacity-60"
       >
         Supprimer
       </button>

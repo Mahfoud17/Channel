@@ -40,11 +40,11 @@ export function ChannelConnectionActions({
             deleteChannelConnection(connectionId, unitId, orgSlug);
           });
         }}
-        className="text-sm text-red-600 hover:text-red-800 disabled:opacity-60"
+        className="text-sm text-critical hover:text-critical disabled:opacity-60"
       >
         {isDeleting ? "…" : "Supprimer"}
       </button>
-      {error && <p className="w-full text-sm text-red-600">{error}</p>}
+      {error && <p className="w-full text-sm text-critical">{error}</p>}
     </div>
   );
 }

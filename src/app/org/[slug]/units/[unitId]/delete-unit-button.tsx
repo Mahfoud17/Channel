@@ -25,7 +25,7 @@ export function DeleteUnitButton({
       <button
         type="button"
         onClick={() => setIsConfirming(true)}
-        className="text-sm text-red-600 hover:text-red-800"
+        className="text-sm text-critical hover:text-critical"
       >
         Supprimer cette unité
       </button>
@@ -33,8 +33,8 @@ export function DeleteUnitButton({
   }
 
   return (
-    <div className="rounded-md border border-red-200 bg-red-50 p-3">
-      <p className="text-sm text-red-800">
+    <div className="rounded-md border border-critical/30 bg-critical-soft p-3">
+      <p className="text-sm text-critical">
         Supprimer définitivement <strong>{unitName}</strong> de la liste ? Le calendrier et
         l&apos;historique associés (à venir) resteront en base mais l&apos;unité ne sera plus
         gérable depuis l&apos;interface.
@@ -54,7 +54,7 @@ export function DeleteUnitButton({
               router.push(`/org/${orgSlug}/properties/${propertyId}`);
             });
           }}
-          className="rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
+          className="rounded-md bg-critical px-3 py-1.5 text-sm font-medium text-white hover:bg-critical/90 disabled:opacity-60"
         >
           {isPending ? "Suppression…" : "Confirmer la suppression"}
         </button>
@@ -68,7 +68,7 @@ export function DeleteUnitButton({
         </button>
       </div>
       {error && (
-        <p role="alert" className="mt-2 text-sm text-red-700">
+        <p role="alert" className="mt-2 text-sm text-critical">
           {error}
         </p>
       )}

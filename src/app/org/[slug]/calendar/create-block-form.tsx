@@ -38,7 +38,7 @@ export function CreateBlockForm({
           id="block_unit_id"
           value={selectedUnit}
           onChange={(event) => setSelectedUnit(event.target.value)}
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         >
           {units.map((unit) => (
             <option key={unit.id} value={unit.id}>
@@ -58,7 +58,7 @@ export function CreateBlockForm({
             name="start_date"
             type="date"
             required
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           />
         </div>
         <div className="space-y-1.5">
@@ -70,7 +70,7 @@ export function CreateBlockForm({
             name="end_date"
             type="date"
             required
-            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+            className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
           />
         </div>
       </div>
@@ -82,7 +82,7 @@ export function CreateBlockForm({
         <select
           id="reason"
           name="reason"
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         >
           {REASONS.map((reason) => (
             <option key={reason.value} value={reason.value}>
@@ -93,7 +93,7 @@ export function CreateBlockForm({
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {state.error}
         </p>
       )}

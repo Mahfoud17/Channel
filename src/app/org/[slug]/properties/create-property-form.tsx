@@ -23,7 +23,7 @@ export function CreatePropertyForm({ orgId, orgSlug }: { orgId: string; orgSlug:
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {state.error}
         </p>
       )}
@@ -31,7 +31,7 @@ export function CreatePropertyForm({ orgId, orgSlug }: { orgId: string; orgSlug:
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60"
+        className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-accent-hover disabled:opacity-60"
       >
         {isPending ? "Création…" : "Créer le logement"}
       </button>
@@ -61,7 +61,7 @@ function Field({
         type="text"
         placeholder={placeholder}
         required={required}
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
     </div>
   );

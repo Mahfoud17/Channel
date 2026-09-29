@@ -15,7 +15,7 @@ export function MarkReadButton({ notificationId, orgSlug }: { notificationId: st
           await markNotificationRead(notificationId, orgSlug);
         })
       }
-      className="shrink-0 text-xs text-neutral-500 hover:text-emerald-700 disabled:opacity-60"
+      className="shrink-0 text-xs text-neutral-500 hover:text-accent disabled:opacity-60"
     >
       {isPending ? "…" : "Marquer comme lu"}
     </button>

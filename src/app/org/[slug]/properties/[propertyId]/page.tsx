@@ -56,7 +56,7 @@ export default async function PropertyDetailPage({
               <li key={unit.id}>
                 <Link
                   href={`/org/${org.slug}/units/${unit.id}`}
-                  className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-emerald-600"
+                  className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-accent"
                 >
                   <div>
                     <p className="font-medium text-neutral-900">{unit.name}</p>

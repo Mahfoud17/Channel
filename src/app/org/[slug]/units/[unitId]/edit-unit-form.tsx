@@ -60,7 +60,7 @@ export function EditUnitForm({
             type="checkbox"
             name="has_elevator"
             defaultChecked={unit.has_elevator}
-            className="rounded border-neutral-300 text-emerald-700 focus:ring-emerald-600"
+            className="rounded border-neutral-300 text-accent focus:ring-accent"
           />
           Ascenseur
         </label>
@@ -69,7 +69,7 @@ export function EditUnitForm({
             type="checkbox"
             name="has_parking"
             defaultChecked={unit.has_parking}
-            className="rounded border-neutral-300 text-emerald-700 focus:ring-emerald-600"
+            className="rounded border-neutral-300 text-accent focus:ring-accent"
           />
           Parking
         </label>
@@ -106,7 +106,7 @@ export function EditUnitForm({
       </div>
 
       {state.error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {state.error}
         </p>
       )}
@@ -114,7 +114,7 @@ export function EditUnitForm({
       <button
         type="submit"
         disabled={isPending}
-        className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:opacity-60"
+        className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-accent-hover disabled:opacity-60"
       >
         {isPending ? "Enregistrement…" : "Enregistrer"}
       </button>
@@ -149,7 +149,7 @@ function TextField({
           defaultValue={defaultValue}
           placeholder={placeholder}
           rows={3}
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
       ) : (
         <input
@@ -159,7 +159,7 @@ function TextField({
           defaultValue={defaultValue}
           placeholder={placeholder}
           required={required}
-          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
       )}
     </div>
@@ -188,7 +188,7 @@ function PriceField({
         step="0.01"
         defaultValue={defaultValue ?? ""}
         placeholder="—"
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
     </div>
   );
@@ -214,7 +214,7 @@ function NumberField({
         type="number"
         min={0}
         defaultValue={defaultValue}
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
     </div>
   );

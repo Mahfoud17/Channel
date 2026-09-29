@@ -1,7 +1,7 @@
 const STYLES: Record<string, string> = {
-  active: "bg-emerald-100 text-emerald-800",
+  active: "bg-good-soft text-good",
   inactive: "bg-neutral-200 text-neutral-700",
-  maintenance: "bg-amber-100 text-amber-800",
+  maintenance: "bg-warn-soft text-warn",
 };
 
 const LABELS: Record<string, string> = {

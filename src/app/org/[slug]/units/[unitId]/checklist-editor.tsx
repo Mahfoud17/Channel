@@ -30,10 +30,10 @@ export function ChecklistEditor({
           setSaved(false);
         }}
         rows={8}
-        className="w-full rounded-md border border-neutral-300 px-3 py-2 font-mono text-sm text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+        className="w-full rounded-md border border-neutral-300 px-3 py-2 font-mono text-sm text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       />
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-critical">
           {error}
         </p>
       )}
@@ -52,7 +52,7 @@ export function ChecklistEditor({
             else setSaved(true);
           });
         }}
-        className="rounded-md bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800 disabled:opacity-60"
+        className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover disabled:opacity-60"
       >
         {isPending ? "Enregistrement…" : saved ? "Enregistré ✓" : "Enregistrer la checklist"}
       </button>

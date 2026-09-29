@@ -185,7 +185,7 @@ export default async function PricingPage({
         {!selectedUnit ? (
           <p className="mt-3 text-sm text-neutral-500">
             Aucune unité —{" "}
-            <Link href={`/org/${org.slug}/properties`} className="text-emerald-700 underline">
+            <Link href={`/org/${org.slug}/properties`} className="text-accent underline">
               ajoute un logement
             </Link>
             .
@@ -193,7 +193,7 @@ export default async function PricingPage({
         ) : selectedUnit.base_price == null ? (
           <p className="mt-3 text-sm text-neutral-500">
             Ce logement n&apos;a pas de prix de base —{" "}
-            <Link href={`/org/${org.slug}/units/${selectedUnit.id}`} className="text-emerald-700 underline">
+            <Link href={`/org/${org.slug}/units/${selectedUnit.id}`} className="text-accent underline">
               renseigne-le sur sa fiche
             </Link>{" "}
             pour voir un aperçu.
@@ -254,7 +254,7 @@ export default async function PricingPage({
                 <div>
                   <p className="font-medium text-neutral-900">
                     {c.url ? (
-                      <a href={c.url} target="_blank" rel="noreferrer" className="hover:text-emerald-700">
+                      <a href={c.url} target="_blank" rel="noreferrer" className="hover:text-accent">
                         {c.name}
                       </a>
                     ) : (
@@ -337,12 +337,12 @@ function Stat({
   return (
     <div
       className={`rounded-lg border p-3 text-center ${
-        tone === "warning" ? "border-amber-200 bg-amber-50" : "border-neutral-200 bg-white"
+        tone === "warning" ? "border-warn/30 bg-warn-soft" : "border-neutral-200 bg-white"
       }`}
     >
       <p
         className={`text-lg font-semibold tabular-nums ${
-          tone === "warning" ? "text-amber-700" : "text-neutral-900"
+          tone === "warning" ? "text-warn" : "text-neutral-900"
         }`}
       >
         {value}

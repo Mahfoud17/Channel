@@ -129,14 +129,14 @@ export default async function CalendarPage({
 
       <div className="flex gap-4 text-xs text-neutral-600">
         <LegendSwatch color="bg-white border border-neutral-300" label="Disponible" />
-        <LegendSwatch color="bg-emerald-600" label="Réservé" />
-        <LegendSwatch color="bg-amber-500" label="Bloqué" />
+        <LegendSwatch color="bg-good" label="Réservé" />
+        <LegendSwatch color="bg-warn-soft0" label="Bloqué" />
       </div>
 
       {sortedUnits.length === 0 ? (
         <p className="text-sm text-neutral-500">
           Aucune unité pour l&apos;instant —{" "}
-          <Link href={`/org/${org.slug}/properties`} className="text-emerald-700 underline">
+          <Link href={`/org/${org.slug}/properties`} className="text-accent underline">
             ajoute un logement
           </Link>{" "}
           pour voir le calendrier.
@@ -167,7 +167,7 @@ export default async function CalendarPage({
                     <td className="sticky left-0 z-10 border-b border-r border-neutral-200 bg-white px-3 py-2 font-medium text-neutral-900">
                       <Link
                         href={`/org/${org.slug}/units/${unit.id}`}
-                        className="hover:text-emerald-700"
+                        className="hover:text-accent"
                       >
                         {unit.name}
                       </Link>
@@ -190,14 +190,14 @@ export default async function CalendarPage({
                             <Link
                               href={cell.event.href}
                               title={cell.event.label}
-                              className="block truncate rounded bg-emerald-600 px-1.5 py-1 text-center text-white hover:bg-emerald-700"
+                              className="block truncate rounded bg-good px-1.5 py-1 text-center text-white hover:opacity-90"
                             >
                               {cell.event.label}
                             </Link>
                           ) : (
                             <span
                               title={cell.event.label}
-                              className="block truncate rounded bg-amber-500 px-1.5 py-1 text-center text-white"
+                              className="block truncate rounded bg-warn-soft0 px-1.5 py-1 text-center text-white"
                             >
                               {cell.event.label}
                             </span>

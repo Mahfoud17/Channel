@@ -23,7 +23,7 @@ export function LogPriceForm({ competitorId, orgSlug }: { competitorId: string; 
           type="date"
           defaultValue={today()}
           required
-          className="rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
         <input
           name="price"
@@ -32,7 +32,7 @@ export function LogPriceForm({ competitorId, orgSlug }: { competitorId: string; 
           step="0.01"
           placeholder="Prix €"
           required
-          className="w-20 rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600"
+          className="w-20 rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent"
         />
         <button
           type="submit"
@@ -50,11 +50,11 @@ export function LogPriceForm({ competitorId, orgSlug }: { competitorId: string; 
             await deleteCompetitor(competitorId, orgSlug);
           })
         }
-        className="text-xs text-red-600 hover:text-red-800 disabled:opacity-60"
+        className="text-xs text-critical hover:text-critical disabled:opacity-60"
       >
         Supprimer
       </button>
-      {state.error && <p className="text-xs text-red-600">{state.error}</p>}
+      {state.error && <p className="text-xs text-critical">{state.error}</p>}
     </div>
   );
 }

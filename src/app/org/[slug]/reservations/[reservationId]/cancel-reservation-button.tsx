@@ -19,7 +19,7 @@ export function CancelReservationButton({
       <button
         type="button"
         onClick={() => setIsConfirming(true)}
-        className="rounded-md border border-red-300 px-3 py-1.5 text-sm text-red-700 hover:bg-red-50"
+        className="rounded-md border border-critical/40 px-3 py-1.5 text-sm text-critical hover:bg-critical-soft"
       >
         Annuler la réservation
       </button>
@@ -27,8 +27,8 @@ export function CancelReservationButton({
   }
 
   return (
-    <div className="rounded-md border border-red-200 bg-red-50 p-3">
-      <p className="text-sm text-red-800">
+    <div className="rounded-md border border-critical/30 bg-critical-soft p-3">
+      <p className="text-sm text-critical">
         Confirmer l&apos;annulation ? Les dates redeviennent immédiatement disponibles sur le
         calendrier.
       </p>
@@ -43,7 +43,7 @@ export function CancelReservationButton({
               if (result.error) setError(result.error);
             });
           }}
-          className="rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
+          className="rounded-md bg-critical px-3 py-1.5 text-sm font-medium text-white hover:bg-critical/90 disabled:opacity-60"
         >
           {isPending ? "Annulation…" : "Confirmer"}
         </button>
@@ -57,7 +57,7 @@ export function CancelReservationButton({
         </button>
       </div>
       {error && (
-        <p role="alert" className="mt-2 text-sm text-red-700">
+        <p role="alert" className="mt-2 text-sm text-critical">
           {error}
         </p>
       )}

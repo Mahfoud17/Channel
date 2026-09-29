@@ -1,11 +1,11 @@
 const STYLES: Record<string, string> = {
   inquiry: "bg-neutral-200 text-neutral-700",
-  pending: "bg-amber-100 text-amber-800",
-  confirmed: "bg-emerald-100 text-emerald-800",
-  modified: "bg-blue-100 text-blue-800",
-  cancelled: "bg-red-100 text-red-700",
+  pending: "bg-warn-soft text-warn",
+  confirmed: "bg-good-soft text-good",
+  modified: "bg-brass-soft text-brass",
+  cancelled: "bg-critical-soft text-critical",
   completed: "bg-neutral-200 text-neutral-700",
-  no_show: "bg-red-100 text-red-700",
+  no_show: "bg-critical-soft text-critical",
 };
 
 const LABELS: Record<string, string> = {

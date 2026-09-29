@@ -42,16 +42,16 @@ export default async function NotificationsPage({ params }: { params: Promise<{ 
           <li
             key={n.id}
             className={`flex items-start justify-between gap-3 rounded-xl border p-4 shadow-sm ${
-              n.read_at ? "border-neutral-200 bg-white" : "border-emerald-200 bg-emerald-50"
+              n.read_at ? "border-line bg-surface" : "border-accent/30 bg-accent-soft"
             }`}
           >
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                {!n.read_at && <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-600" />}
+                {!n.read_at && <span className="h-2 w-2 shrink-0 rounded-full bg-accent" />}
                 {n.link ? (
                   <Link
                     href={`/org/${org.slug}${n.link}`}
-                    className="font-medium text-neutral-900 hover:text-emerald-700"
+                    className="font-medium text-neutral-900 hover:text-accent"
                   >
                     {n.title}
                   </Link>

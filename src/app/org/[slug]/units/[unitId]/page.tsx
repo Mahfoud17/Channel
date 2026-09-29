@@ -211,7 +211,7 @@ export default async function UnitDetailPage({
               </div>
               <p className="mt-1 truncate text-xs text-neutral-500">{connection.ical_import_url}</p>
               {connection.last_sync_status === "error" && connection.last_sync_message && (
-                <p className="mt-1 text-xs text-red-600">{connection.last_sync_message}</p>
+                <p className="mt-1 text-xs text-critical">{connection.last_sync_message}</p>
               )}
             </div>
           ))}
@@ -277,10 +277,10 @@ function SyncStatusBadge({
   return (
     <span
       className={`ml-2 inline-flex items-center gap-1 text-xs ${
-        isOk ? "text-emerald-700" : "text-red-600"
+        isOk ? "text-good" : "text-critical"
       }`}
     >
-      <span className={`h-1.5 w-1.5 rounded-full ${isOk ? "bg-emerald-600" : "bg-red-600"}`} />
+      <span className={`h-1.5 w-1.5 rounded-full ${isOk ? "bg-good" : "bg-critical"}`} />
       {isOk ? "OK" : "Erreur"} · {SYNC_DATE_FORMAT.format(new Date(lastSyncedAt))}
     </span>
   );

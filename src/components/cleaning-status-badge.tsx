@@ -1,11 +1,11 @@
 const STYLES: Record<string, string> = {
   unassigned: "bg-neutral-200 text-neutral-700",
-  proposed: "bg-blue-100 text-blue-800",
-  accepted: "bg-sky-100 text-sky-800",
-  in_progress: "bg-amber-100 text-amber-800",
-  done: "bg-emerald-100 text-emerald-800",
+  proposed: "bg-accent-soft text-accent",
+  accepted: "bg-brass-soft text-brass",
+  in_progress: "bg-warn-soft text-warn",
+  done: "bg-good-soft text-good",
   needs_inspection: "bg-purple-100 text-purple-800",
-  problem: "bg-red-100 text-red-700",
+  problem: "bg-critical-soft text-critical",
   cancelled: "bg-neutral-200 text-neutral-500",
 };
 

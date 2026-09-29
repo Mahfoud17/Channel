@@ -27,7 +27,7 @@ export function AssignCleanerSelect({
           assignCleaningTask(taskId, cleanerId, orgSlug);
         });
       }}
-      className="rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 disabled:opacity-60"
+      className="rounded-md border border-neutral-300 px-2 py-1 text-xs text-neutral-900 outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:opacity-60"
     >
       <option value="" disabled>
         Attribuer à…
