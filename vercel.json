@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/v1/cron/sync-channels",
-      "schedule": "*/30 * * * *"
+      "schedule": "0 3 * * *"
     }
   ]
 }
